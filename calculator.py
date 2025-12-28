@@ -7,8 +7,6 @@ class Calculator:
         self.root.title("🔢 Calculator")
         self.root.geometry("400x600")
         self.root.resizable(False, False)
-        
-        # Color scheme
         self.bg_gradient_top = "#667eea"
         self.bg_gradient_bottom = "#764ba2"
         self.display_bg = "#2d3436"
@@ -19,8 +17,6 @@ class Calculator:
         self.operator_text = "#ffffff"
         self.equals_bg = "#00b894"
         self.clear_bg = "#fdcb6e"
-        
-        # Calculator state
         self.current = ""
         self.operator = ""
         self.first_num = ""
@@ -29,32 +25,24 @@ class Calculator:
         self.setup_ui()
         
     def setup_ui(self):
-        # Main canvas for gradient background
+        
         self.canvas = tk.Canvas(self.root, width=400, height=600, highlightthickness=0)
         self.canvas.pack(fill="both", expand=True)
-        
-        # Create gradient background
         self.create_gradient()
-        
-        # Display frame
         display_frame = tk.Frame(self.root, bg=self.display_bg, relief="flat", bd=0)
         display_frame.place(x=20, y=20, width=360, height=120)
-        
-        # Display label
         display_font = font.Font(family="Digital-7", size=36, weight="bold")
         self.display = tk.Label(display_frame, text="0", font=display_font,
                                bg=self.display_bg, fg=self.display_text,
                                anchor="e", padx=20)
         self.display.pack(fill="both", expand=True)
-        
-        # Secondary display for operation
         self.operation_display = tk.Label(display_frame, text="", 
                                          font=("Arial", 12),
                                          bg=self.display_bg, fg="#74b9ff",
                                          anchor="e", padx=20)
         self.operation_display.place(x=0, y=10, width=360, height=30)
         
-        # Button layout
+        
         buttons = [
             ['C', '⌫', '%', '/'],
             ['7', '8', '9', 'x'],
@@ -62,8 +50,6 @@ class Calculator:
             ['1', '2', '3', '+'],
             ['±', '0', '.', '=']
         ]
-        
-        # Create buttons
         y_offset = 160
         for row in buttons:
             x_offset = 20
@@ -76,7 +62,6 @@ class Calculator:
         """Create a gradient background"""
         width = 400
         height = 600
-        
         r1, g1, b1 = self.hex_to_rgb(self.bg_gradient_top)
         r2, g2, b2 = self.hex_to_rgb(self.bg_gradient_bottom)
         
@@ -93,7 +78,7 @@ class Calculator:
         return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
     
     def create_button(self, text, x, y):
-        # Determine button color
+        
         if text in ['/', 'x', '-', '+']:
             bg_color = self.operator_bg
             fg_color = self.operator_text
@@ -111,7 +96,6 @@ class Calculator:
             fg_color = self.button_text
             btn_font = ("Arial", 18, "bold")
         
-        # Create button frame for shadow effect
         shadow_frame = tk.Frame(self.root, bg="#555555")
         shadow_frame.place(x=x+2, y=y+2, width=80, height=70)
         
@@ -121,14 +105,14 @@ class Calculator:
                           command=lambda t=text: self.on_button_click(t))
         button.place(x=x, y=y, width=80, height=70)
         
-        # Hover effects
+        
         button.bind("<Enter>", lambda e, b=button, c=bg_color: self.on_hover(b, c))
         button.bind("<Leave>", lambda e, b=button, c=bg_color: self.on_leave(b, c))
     
     def on_hover(self, button, original_color):
         """Button hover effect"""
         rgb = self.hex_to_rgb(original_color)
-        # Lighten the color
+       
         new_rgb = tuple(min(255, c + 30) for c in rgb)
         new_color = f'#{new_rgb[0]:02x}{new_rgb[1]:02x}{new_rgb[2]:02x}'
         button.config(bg=new_color)
@@ -231,7 +215,7 @@ class Calculator:
                 elif self.operator == '%':
                     result = num1 % num2
                 
-                # Format result
+                
                 if result == int(result):
                     result = int(result)
                 else:
