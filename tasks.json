@@ -1,0 +1,27 @@
+[
+  {
+    "text": "complete the codsoft internship task",
+    "completed": true,
+    "created": "2025-12-25 13:18"
+  },
+  {
+    "text": "Enter a new task...submit the assignment",
+    "completed": false,
+    "created": "2025-12-25 13:18"
+  },
+  {
+    "text": "send a mail regarding the new project to mam",
+    "completed": false,
+    "created": "2025-12-25 13:19"
+  },
+  {
+    "text": "lunch",
+    "completed": true,
+    "created": "2025-12-25 13:19"
+  },
+  {
+    "text": "remainder to take tablet at 3pm",
+    "completed": false,
+    "created": "2025-12-25 13:20"
+  }
+]
